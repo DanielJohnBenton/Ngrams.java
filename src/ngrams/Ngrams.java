@@ -1,7 +1,9 @@
 package ngrams;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class Ngrams {
+	
 	public static int SORT_NGRAMS = 1;
 	public static int DONT_SORT_NGRAMS = 2;
 	public static int CASE_SENSITIVE = 3;
@@ -45,13 +47,59 @@ public class Ngrams {
 			
 			for(int pos = i + 1; pos < end; pos++) {
 				if(pos < n) {
+					ArrayList<String> pair = new ArrayList<String>();
+					pair.add(ngrams.get(i));
+					pair.add(ngrams.get(pos));
+					
 					if(sortForDuplicates == SORT_NGRAMS) {
-						
+						pair.sort(String::compareToIgnoreCase);
 					}
+					
+					skipgrams.add(pair);
+				}
+				else
+				{
+					break;
 				}
 			}
 		}
+		
+		return skipgrams;
 	}*/
+	
+	public static ArrayList<String> sanitiseToWords(String text)
+	{
+		String[] characters = text.split("");
+		
+		String sanitised = "";
+		
+		boolean onSpace = true;
+		
+		int xLastCharacter = text.length() - 1;
+		for(int i = 0; i <= xLastCharacter; i++) {
+			if(characters[i].matches("^[A-Za-z0-9$£%]$"))
+			{
+				sanitised += characters[i];
+				onSpace = false;
+			}
+			else if(characters[i].equals("'") && i > 0 && i < xLastCharacter) {
+				String surrounding = characters[i - 1] + characters[i + 1];
+				if(surrounding.matches("^[A-Za-z]{2}$"))
+				{
+					sanitised +="'";
+					onSpace = false;
+				}
+			}
+			else if(!onSpace && i != xLastCharacter)
+			{
+				sanitised +=" ";
+				onSpace = true;
+			}
+		}
+		
+		return new ArrayList<String>(Arrays.asList(sanitised.split("\\s+")));
+	}
+	
 }
 
 
