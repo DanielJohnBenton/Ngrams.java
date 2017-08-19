@@ -33,10 +33,9 @@ public class Ngrams {
 		return ngrams;
 	}
 	
-	/*public static ArrayList<ArrayList<String>> skipgrams(ArrayList<String> words, int size, int distance, int sortForDuplicates)
+	public static ArrayList<ArrayList<String>> skipgrams(ArrayList<String> words, int size, int distance, int sortForDuplicates)
 	{
 		ArrayList<String> ngrams = ngrams(words, size);
-		//.sort(String::compareToIgnoreCase);
 		
 		ArrayList<ArrayList<String>> skipgrams = new ArrayList<ArrayList<String>>();
 		
@@ -65,7 +64,7 @@ public class Ngrams {
 		}
 		
 		return skipgrams;
-	}*/
+	}
 	
 	public static ArrayList<String> sanitiseToWords(String text)
 	{
