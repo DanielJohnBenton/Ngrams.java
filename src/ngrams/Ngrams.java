@@ -1,6 +1,7 @@
 package ngrams;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 
 public class Ngrams {
 	
@@ -64,6 +65,29 @@ public class Ngrams {
 		}
 		
 		return skipgrams;
+	}
+	
+	public static ArrayList<String> bagOfNgrams(ArrayList<String> words, int n, int caseSensitivity) {
+		ArrayList<String> ngrams = ngrams(words, n);
+		
+		ArrayList<String> bag = new ArrayList<String>();
+		HashMap<String, Boolean> lookup = new HashMap<String, Boolean>();
+		
+		int c = ngrams.size();
+		for(int i = 0; i < c; i++) {
+			String id = ngrams.get(i);
+			
+			if(caseSensitivity == CASE_INSENSITIVE) {
+				id = id.toLowerCase();
+			}
+			
+			if(lookup.get(id) == null) {
+				bag.add(ngrams.get(i));
+				lookup.put(id, true);
+			}
+		}
+		
+		return bag;
 	}
 	
 	public static ArrayList<String> sanitiseToWords(String text)
