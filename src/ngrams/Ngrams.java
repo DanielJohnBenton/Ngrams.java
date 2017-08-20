@@ -94,6 +94,48 @@ public class Ngrams {
 		return bagOfNgrams(words, 1, caseSensitivity);
 	}
 	
+	public static ArrayList<ArrayList<String>> bagOfSkipgrams(ArrayList<String> words, int size, int distance, int sortForDuplicates, int caseSensitivity) {
+		if(sortForDuplicates != SORT_NGRAMS && sortForDuplicates != DONT_SORT_NGRAMS) {
+			System.out.println("Warning: bagOfSkipgrams should have Ngrams.SORT_NGRAMS or Ngrams.DONT_SORT_NGRAMS as 4th parameter. Defaulted to DONT_SORT_NGRAMS.");
+			sortForDuplicates = DONT_SORT_NGRAMS;
+		}
+		
+		if(caseSensitivity != CASE_SENSITIVE && caseSensitivity != CASE_INSENSITIVE) {
+			System.out.println("Warning: bagOfSkipgrams should have Ngrams.CASE_SENSITIVE or Ngrams.CASE_INSENSITIVE as 5th parameter. Defaulted to CASE_SENSITIVE.");
+			caseSensitivity = CASE_SENSITIVE;
+		}
+		
+		ArrayList<ArrayList<String>> skipgrams = skipgrams(words, size, distance, sortForDuplicates);
+		int nSkipgrams = skipgrams.size();
+		
+		if(caseSensitivity == CASE_INSENSITIVE && sortForDuplicates == SORT_NGRAMS) {
+			for(int i = 0; i < nSkipgrams; i++) {
+				ArrayList<String> skipgram = skipgrams.get(i);
+				skipgram.sort(String::compareToIgnoreCase);
+				skipgrams.set(i, skipgram);
+			}
+		}
+		
+		ArrayList<ArrayList<String>> bag = new ArrayList<ArrayList<String>>();
+		HashMap<String, Boolean> lookup = new HashMap<String, Boolean>();
+		
+		for(int i = 0; i < nSkipgrams; i++) {
+			ArrayList<String> skipgram = skipgrams.get(i);
+			String id = skipgram.get(0) +" "+ skipgram.get(1);
+			
+			if(caseSensitivity == CASE_INSENSITIVE) {
+				id = id.toLowerCase();
+			}
+			
+			if(lookup.get(id) == null) {
+				bag.add(skipgram);
+				lookup.put(id, true);
+			}
+		}
+		
+		return bag;
+	}
+	
 	public static ArrayList<String> sanitiseToWords(String text)
 	{
 		String[] characters = text.split("");
