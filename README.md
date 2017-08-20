@@ -86,5 +86,30 @@ System.out.println(skipgrams.toString());
 
 Output (truncated): `[[and, Turning], [Turning, turning], [and, turning], [and, in], [in, turning], [the, turning], ...`
 
+### :shell: bagOfNgrams
+
+Generate n-grams and remove duplicates. Can be case sensitive or insensitive by passing `Ngrams.CASE_SENSITIVE` or `Ngrams.CASE_INSENSITIVE`.
+
+| Parameter       | Type                       | Description                                                                                                                                                                                                                                              | 
+|-----------------|----------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------| 
+| words           | `ArrayList<String>` | An array of words e.g. `["these", "are", "words"]`.                                                                                                                                                                                                      | 
+| n               | `int`                  | Size of the n-grams e.g. `2` creates bigrams `["these are", "are words"]`                                                                                                                                                                                | 
+| caseSensitivity | `int`                  | Pass `Ngrams.CASE_SENSITIVE` or `Ngrams.CASE_INSENSITIVE`. Case insensitive calls will ignore differences in case when removing duplicates e.g. `"Turning"`, `"turning"`, `"TURNING"` will all be seen as identical and reduced to just `"Turning"`. | 
+
+Returns an `ArrayList<String>` of n-grams with duplicates removed.
+
+```
+String text = "   Turning and turning in the widening gyre\r\n    The falcon cannot hear the falconer;\r\n    Things fall apart; the centre cannot hold;\r\n    Mere anarchy is loosed upon the world   ";
+ArrayList<String> words = Ngrams.sanitiseToWords(text);
+ArrayList<String> bagOfNgrams = Ngrams.bagOfNgrams(words, 1, Ngrams.CASE_INSENSITIVE);
+System.out.println(bagOfNgrams.toString());
+```
+
+Output: `[Turning, and, in, the, widening, gyre, falcon, cannot, hear, falconer, Things, fall, apart, centre, hold, Mere, anarchy, is, loosed, upon, world]`
+
+
+
+
+
 
 
