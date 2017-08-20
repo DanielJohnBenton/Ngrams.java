@@ -107,6 +107,76 @@ System.out.println(bagOfNgrams.toString());
 
 Output: `[Turning, and, in, the, widening, gyre, falcon, cannot, hear, falconer, Things, fall, apart, centre, hold, Mere, anarchy, is, loosed, upon, world]`
 
+### :shell: bagOfSkipgrams
+
+Generates skip-grams and removes duplicates. Can ignore direction by passing `Ngrams.SORT_NGRAMS`. Can be case insensitive by passing `Ngrams.CASE_INSENSITIVE`.
+
+| Parameter         | Type                       | Description                                                                                                                                                                                                                                                                                                                                                        | 
+|-------------------|----------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------| 
+| words             | `ArrayList<String>` | An array of words e.g. `["these", "are", "words"]`                                                                                                                                                                                                                                                                                                                 | 
+| size              | `int`                  | Size of the n-grams e.g. `2`: `"these are", "are words"`                                                                                                                                                                                                                                                                                                           | 
+| distance          | `int`                  | Distance to skip to create skip-grams, e.g. `5` will create skip-grams using the base word (or n-gram) and n-grams from the 5 following words.                                                                                                                                                                                                                     | 
+| sortForDuplicates | `int`                  | Pass `Ngrams.SORT_NGRAMS` or `Ngrams.DONT_SORT_NGRAMS`. Sorting n-grams alphabetically can help flag up duplicates e.g. when creating a [bag of words/n-grams/skip-grams](https://en.wikipedia.org/wiki/Bag-of-words_model#Example_implementation). If you only care about pairing n-grams by proximity but not by direction, use `Ngrams.DONT_SORT_NGRAMS`. | 
+| caseSensitivity   | `int`                  | Pass `Ngrams.CASE_SENSITIVE` or `Ngrams.CASE_INSENSITIVE`. Case insensitive calls will ignore differences in case when removing duplicates e.g. `"Turning"`, `"turning"`, `"TURNING"` will all be seen as identical and reduces to just `"Turning"`.                                                                                                           | 
+
+Returns an `ArrayList<ArrayList<String>>` of paired n-grams.
+
+Case sensitive, direction sensitive:
+
+```
+String text = "Something and SOMETHING and something and something";
+ArrayList<String> words = new ArrayList<String>(Arrays.asList(text.split("\\s+")));
+ArrayList<ArrayList<String>> bagOfSkipgrams = Ngrams.bagOfSkipgrams(words, 2, 2, Ngrams.DONT_SORT_NGRAMS, Ngrams.CASE_SENSITIVE);
+System.out.println(bagOfSkipgrams.toString());
+```
+
+Output:
+
+```
+[ [Something and, and SOMETHING],
+  [Something and, SOMETHING and],
+  [and SOMETHING, SOMETHING and],
+  [and SOMETHING, and something],
+  [SOMETHING and, and something],
+  [SOMETHING and, something and],
+  [and something, something and],
+  [and something, and something],
+  [something and, and something] ]
+```
+
+Case sensitive, direction insensitive `Ngrams.bagOfSkipgrams(words, 2, 2, Ngrams.SORT_NGRAMS, Ngrams.CASE_SENSITIVE)`:
+
+```
+[ [and SOMETHING, Something and],
+ [Something and, SOMETHING and],
+ [and SOMETHING, SOMETHING and],
+ [and SOMETHING, and something],
+ [and something, SOMETHING and],
+ [SOMETHING and, something and],
+ [and something, something and],
+ [and something, and something] ]
+```
+
+Case insensitive, direction insensitive `Ngrams.bagOfSkipgrams(words, 2, 2, Ngrams.SORT_NGRAMS, Ngrams.CASE_INSENSITIVE)`:
+
+```
+[ [and SOMETHING, Something and], 
+[Something and, SOMETHING and], 
+[and SOMETHING, and something] ]
+```
+
+Case insensitive, direction sensitive `Ngrams.bagOfSkipgrams(words, 2, 2, Ngrams.DONT_SORT_NGRAMS, Ngrams.CASE_INSENSITIVE)`:
+
+```
+[ [Something and, and SOMETHING], 
+[Something and, SOMETHING and], 
+[and SOMETHING, SOMETHING and], 
+[and SOMETHING, and something] ]
+```
+
+
+
+
 
 
 
