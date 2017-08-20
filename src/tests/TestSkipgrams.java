@@ -1,6 +1,5 @@
 package tests;
 import java.util.ArrayList;
-
 import ngrams.Ngrams;
 
 public class TestSkipgrams {
