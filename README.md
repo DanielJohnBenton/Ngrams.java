@@ -84,7 +84,7 @@ ArrayList<ArrayList<String>> skipgrams = Ngrams.skipgrams(words, 1, 2, Ngrams.SO
 System.out.println(skipgrams.toString());
 ```
 
-Output: `[[and, Turning], [Turning, turning], [and, turning], [and, in], [in, turning], [the, turning], ...`
+Output (truncated): `[[and, Turning], [Turning, turning], [and, turning], [and, in], [in, turning], [the, turning], ...`
 
 
 
