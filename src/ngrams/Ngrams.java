@@ -136,6 +136,18 @@ public class Ngrams {
 		return bag;
 	}
 	
+	public static ArrayList<String> concatSkipgrams(ArrayList<ArrayList<String>> skipgrams) {
+		ArrayList<String> concatenated = new ArrayList<String>();
+		
+		int n = skipgrams.size();
+		for(int i = 0; i < n; i++) {
+			ArrayList<String> skipgram = skipgrams.get(i);
+			concatenated.add(skipgram.get(0) +" "+ skipgram.get(1));
+		}
+		
+		return concatenated;
+	}
+	
 	public static ArrayList<String> sanitiseToWords(String text)
 	{
 		String[] characters = text.split("");
