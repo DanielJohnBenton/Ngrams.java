@@ -13,7 +13,10 @@ public class TestBagOfSkipgrams {
 				{1,5,Ngrams.SORT_NGRAMS,Ngrams.CASE_SENSITIVE},
 				{1,5,Ngrams.SORT_NGRAMS,Ngrams.CASE_INSENSITIVE},
 				{1,5,Ngrams.DONT_SORT_NGRAMS,Ngrams.CASE_SENSITIVE},
-				{1,5,Ngrams.DONT_SORT_NGRAMS,Ngrams.CASE_INSENSITIVE}
+				{1,5,Ngrams.DONT_SORT_NGRAMS,Ngrams.CASE_INSENSITIVE},
+				{1,5,Ngrams.CASE_INSENSITIVE,Ngrams.CASE_INSENSITIVE}, // warning 1
+				{1,5,Ngrams.SORT_NGRAMS,Ngrams.SORT_NGRAMS}, // warning 2
+				{1,5,Ngrams.CASE_INSENSITIVE,Ngrams.SORT_NGRAMS}, // warning 1 and 2
 		};
 		int nConfigs = configs.length;
 		
