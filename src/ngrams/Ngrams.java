@@ -90,6 +90,10 @@ public class Ngrams {
 		return bag;
 	}
 	
+	public static ArrayList<String> bagOfWords(ArrayList<String> words, int caseSensitivity) {
+		return bagOfNgrams(words, 1, caseSensitivity);
+	}
+	
 	public static ArrayList<String> sanitiseToWords(String text)
 	{
 		String[] characters = text.split("");
