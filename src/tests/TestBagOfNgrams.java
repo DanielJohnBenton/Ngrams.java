@@ -17,7 +17,7 @@ public class TestBagOfNgrams {
 			int nNgrams = ngrams.size();
 			int last = nNgrams - 1;
 			
-			String message = "Size: "+ configs[iConfigs][0] +" Returns: "+ nNgrams +" (";
+			String message = "Size: "+ configs[iConfigs][0] +" Case sensitive: "+ ((configs[iConfigs][1] == Ngrams.CASE_SENSITIVE) ? "Y" : "N") +" Returns: "+ nNgrams +" (";
 			
 			for(int iNgrams = 0; iNgrams <= last; iNgrams++) {
 				message +="'"+ ngrams.get(iNgrams) +"'";
