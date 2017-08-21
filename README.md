@@ -30,10 +30,10 @@ Output: `[These are, are some, some words]`
 - [ngrams](https://github.com/DanielJohnBenton/Ngrams.java#shell-ngrams)
 - [skipgrams](https://github.com/DanielJohnBenton/Ngrams.java#shell-skipgrams)
 - [bagOfNgrams](https://github.com/DanielJohnBenton/Ngrams.java#shell-bagofngrams)
-- [bagOfWords](https://github.com/DanielJohnBenton/Ngrams.java#shell-bagOfWords)
-- [bagOfSkipgrams](https://github.com/DanielJohnBenton/Ngrams.java#shell-bagOfSkipgrams)
-- [concatSkipgrams](https://github.com/DanielJohnBenton/Ngrams.java#shell-concatSkipgrams)
-- [sanitiseWords](https://github.com/DanielJohnBenton/Ngrams.java#shell-sanitiseToWords)
+- [bagOfWords](https://github.com/DanielJohnBenton/Ngrams.java#shell-bagfwords)
+- [bagOfSkipgrams](https://github.com/DanielJohnBenton/Ngrams.java#shell-bagofskipgrams)
+- [concatSkipgrams](https://github.com/DanielJohnBenton/Ngrams.java#shell-concatskipgrams)
+- [sanitiseWords](https://github.com/DanielJohnBenton/Ngrams.java#shell-sanitisetowords)
 
 ### :shell: ngrams
 
