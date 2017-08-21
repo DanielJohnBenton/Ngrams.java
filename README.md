@@ -27,13 +27,13 @@ public class Test_001 {
 Output: `[These are, are some, some words]`
 
 ## Methods
-- ngrams
-- skipgrams
-- bagOfNgrams
-- bagOfWords
-- bagOfSkipgrams
-- concatSkipgrams
-- sanitiseWords
+- [ngrams](https://github.com/DanielJohnBenton/Ngrams.java#shell-ngrams)
+- [skipgrams](https://github.com/DanielJohnBenton/Ngrams.java#shell-skipgrams)
+- [bagOfNgrams](https://github.com/DanielJohnBenton/Ngrams.java#shell-bagOfNgrams)
+- [bagOfWords](https://github.com/DanielJohnBenton/Ngrams.java#shell-bagOfWords)
+- [bagOfSkipgrams](https://github.com/DanielJohnBenton/Ngrams.java#shell-bagOfSkipgrams)
+- [concatSkipgrams](https://github.com/DanielJohnBenton/Ngrams.java#shell-concatSkipgrams)
+- [sanitiseWords](https://github.com/DanielJohnBenton/Ngrams.java#shell-sanitiseToWords)
 
 ### :shell: ngrams
 
@@ -192,7 +192,7 @@ System.out.println(skipgrams.toString());
 
 Output: `[These are are some, These are some words, are some some words]`
 
-### sanitiseToWords
+### :shell: sanitiseToWords
 
 A rudimentary method that attempts to refine messy text into an `ArrayList<String>` of words.
 
