@@ -174,11 +174,23 @@ Case insensitive, direction sensitive `Ngrams.bagOfSkipgrams(words, 2, 2, Ngrams
 [and SOMETHING, and something] ]
 ```
 
+### :shell: concatSkipgrams
 
+Pass skip-grams through this method if you would prefer a simpler `ArrayList<String>` where skip-grams have been concatenated into a single string.
 
+| Parameter | Type                                | Description                                                                                                                                                                  | 
+|-----------|-------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------| 
+| skipGrams | `ArrayList<ArrayList<String>>` | Skip-grams created using `skipGrams` or `bagOfSkipGrams` which you want to simplify into `ArrayList<String>` by joining each n-gram pair into one string. | 
 
+```
+ArrayList<String> words = new ArrayList<String>(Arrays.asList("These are some words".split("\\s+")));
+ArrayList<String> skipgrams = Ngrams.concatSkipgrams(
+	Ngrams.skipgrams(words, 2, 2, Ngrams.DONT_SORT_NGRAMS)
+);
+System.out.println(skipgrams.toString());
+```
 
-
+Output: `[These are are some, These are some words, are some some words]`
 
 
 
