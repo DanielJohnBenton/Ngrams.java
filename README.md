@@ -192,6 +192,47 @@ System.out.println(skipgrams.toString());
 
 Output: `[These are are some, These are some words, are some some words]`
 
+### sanitiseToWords
 
+A rudimentary method that attempts to refine messy text into an `ArrayList<String>` of words.
 
+| Parameter | Type     | Description                                   | 
+|-----------|----------|-----------------------------------------------| 
+| text      | `String` | The source text you want to split into words. | 
 
+Note that this is mainly only good for English-language text - it does not support accented characters etc.
+
+Its approach is to replace anything outwith a small list of allowable characters with a space, avoiding any double spacing, and then split by those spaces.
+
+This works quite well for many English-language texts - with the occasional mistake.
+
+However, you may prefer to roll your own sanitisation/splitting/[tokenisation method](https://en.wikipedia.org/wiki/Lexical_analysis#Tokenization) based more closely on your source text(s).
+
+```
+String text = "   Turning and turning in the widening gyre\r\n    The falcon cannot hear the falconer;\r\n    Things fall apart; the centre cannot hold;\r\n    Mere anarchy is loosed upon the world   ";
+ArrayList<String> words = Ngrams.sanitiseToWords(text);
+int last = words.size() - 1;
+
+String output = "[";
+
+for(int i = 0; i <= last; i++) {
+	output +="'"+ words.get(i) +"'";
+	
+	if(i != last) {
+		output +=", ";
+	}
+}
+
+output +="]";
+
+System.out.println(output);
+```
+
+Output:
+
+```
+[ 'Turning', 'and', 'turning', 'in', 'the', 'widening', 'gyre',
+  'The', 'falcon', 'cannot', 'hear', 'the', 'falconer',
+  'Things', 'fall', 'apart', 'the', 'centre', 'cannot', 'hold',
+  'Mere', 'anarchy', 'is', 'loosed', 'upon', 'the', 'world' ]
+```
