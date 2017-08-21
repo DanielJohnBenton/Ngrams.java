@@ -107,6 +107,21 @@ System.out.println(bagOfNgrams.toString());
 
 Output: `[Turning, and, in, the, widening, gyre, falcon, cannot, hear, falconer, Things, fall, apart, centre, hold, Mere, anarchy, is, loosed, upon, world]`
 
+### :shell: bagOfWords
+
+This is just a wrapper function for readability that called `bagOfNgrams` with an n-gram size (`n`) of `1`.
+
+| Parameter       | Type                       | Description                                                                                                                                                                                                                                              | 
+|-----------------|----------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------| 
+| words           | `ArrayList<String>` | An array of words e.g. `["these", "are", "words"]`.                                                                                                                                                                                                      | 
+| caseSensitivity | `int`                  | Pass `Ngrams.CASE_SENSITIVE` or `Ngrams.CASE_INSENSITIVE`. Case insensitive calls will ignore differences in case when removing duplicates e.g. `"Turning"`, `"turning"`, `"TURNING"` will all be seen as identical and reduces to just `"Turning"`. | 
+
+Returns an `ArrayList<String>` of words with duplicates removed.
+
+```
+ArrayList<String> bagOfWords = Ngrams.bagOfWords(words, Ngrams.CASE_INSENSITIVE);
+```
+
 ### :shell: bagOfSkipgrams
 
 Generates skip-grams and removes duplicates. Can ignore direction by passing `Ngrams.SORT_NGRAMS`. Can be case insensitive by passing `Ngrams.CASE_INSENSITIVE`.
