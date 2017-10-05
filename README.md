@@ -1,7 +1,5 @@
 # Ngrams.java
 
-[![forthebadge](http://forthebadge.com/images/badges/contains-technical-debt.svg)](http://forthebadge.com) [![forthebadge](http://forthebadge.com/images/badges/built-with-resentment.svg)](http://forthebadge.com)
-
 A Java library for creating n-grams, skip-grams, bag of words, bag of n-grams, bag of skip-grams.
 
 ## Input
