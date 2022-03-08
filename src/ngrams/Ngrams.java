@@ -21,13 +21,13 @@ public class Ngrams {
 		for(int i = 0; i < c; i++) {
 			if((i + n - 1) < c) {
 				int stop = i + n;
-				String ngramWords = words.get(i);
+				StringBuilder ngramWords = new StringBuilder(words.get(i));
 				
 				for(int j = i + 1; j < stop; j++) {
-					ngramWords +=" "+ words.get(j);
+					ngramWords.append(" ").append(words.get(j));
 				}
 				
-				ngrams.add(ngramWords);
+				ngrams.add(ngramWords.toString());
 			}
 		}
 		
@@ -74,15 +74,13 @@ public class Ngrams {
 		HashMap<String, Boolean> lookup = new HashMap<String, Boolean>();
 		
 		int c = ngrams.size();
-		for(int i = 0; i < c; i++) {
-			String id = ngrams.get(i);
-			
-			if(caseSensitivity == CASE_INSENSITIVE) {
+		for (String id : ngrams) {
+			if (caseSensitivity == CASE_INSENSITIVE) {
 				id = id.toLowerCase();
 			}
-			
-			if(lookup.get(id) == null) {
-				bag.add(ngrams.get(i));
+
+			if (lookup.get(id) == null) {
+				bag.add(id);
 				lookup.put(id, true);
 			}
 		}
@@ -118,16 +116,15 @@ public class Ngrams {
 		
 		ArrayList<ArrayList<String>> bag = new ArrayList<ArrayList<String>>();
 		HashMap<String, Boolean> lookup = new HashMap<String, Boolean>();
-		
-		for(int i = 0; i < nSkipgrams; i++) {
-			ArrayList<String> skipgram = skipgrams.get(i);
-			String id = skipgram.get(0) +" "+ skipgram.get(1);
-			
-			if(caseSensitivity == CASE_INSENSITIVE) {
+
+		for (ArrayList<String> skipgram : skipgrams) {
+			String id = skipgram.get(0) + " " + skipgram.get(1);
+
+			if (caseSensitivity == CASE_INSENSITIVE) {
 				id = id.toLowerCase();
 			}
-			
-			if(lookup.get(id) == null) {
+
+			if (lookup.get(id) == null) {
 				bag.add(skipgram);
 				lookup.put(id, true);
 			}
@@ -140,9 +137,8 @@ public class Ngrams {
 		ArrayList<String> concatenated = new ArrayList<String>();
 		
 		int n = skipgrams.size();
-		for(int i = 0; i < n; i++) {
-			ArrayList<String> skipgram = skipgrams.get(i);
-			concatenated.add(skipgram.get(0) +" "+ skipgram.get(1));
+		for (ArrayList<String> skipgram : skipgrams) {
+			concatenated.add(skipgram.get(0) + " " + skipgram.get(1));
 		}
 		
 		return concatenated;
@@ -152,33 +148,33 @@ public class Ngrams {
 	{
 		String[] characters = text.split("");
 		
-		String sanitised = "";
+		StringBuilder sanitised = new StringBuilder();
 		
 		boolean onSpace = true;
 		
 		int xLastCharacter = text.length() - 1;
 		for(int i = 0; i <= xLastCharacter; i++) {
-			if(characters[i].matches("^[A-Za-z0-9$£%]$"))
+			if(characters[i].matches("^[A-Za-z0-9$Â£%]$"))
 			{
-				sanitised += characters[i];
+				sanitised.append(characters[i]);
 				onSpace = false;
 			}
 			else if(characters[i].equals("'") && i > 0 && i < xLastCharacter) {
 				String surrounding = characters[i - 1] + characters[i + 1];
 				if(surrounding.matches("^[A-Za-z]{2}$"))
 				{
-					sanitised +="'";
+					sanitised.append("'");
 					onSpace = false;
 				}
 			}
 			else if(!onSpace && i != xLastCharacter)
 			{
-				sanitised +=" ";
+				sanitised.append(" ");
 				onSpace = true;
 			}
 		}
 		
-		return new ArrayList<String>(Arrays.asList(sanitised.split("\\s+")));
+		return new ArrayList<String>(Arrays.asList(sanitised.toString().split("\\s+")));
 	}
 	
 }
